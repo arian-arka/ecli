@@ -1,0 +1,33 @@
+{
+  "name": "easy-node-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "buildAndRun": "rm -r dist & tsc & node dist/index.js",
+    "run": "node dist/index.js",
+    "build": "rm -r dist & tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "push" : "rm -r dist & npm run build && git add -A && git commit -m \"msg\" && git push"
+  },
+  "files": ["/dist"],
+  "bin": {
+    "ecli": "bin.js",
+    "custom-ecli": "bin-custom.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arians-code-hub/easy-node-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arians-code-hub/easy-node-cli/issues"
+  },
+  "homepage": "https://github.com/arians-code-hub/easy-node-cli#readme",
+  "devDependencies": {
+    "@types/node": "^20.12.10",
+    "typescript": "^5.4.5"
+  }
+}
