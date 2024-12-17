@@ -1,5 +1,5 @@
 {
-  "name": "easy-node-cli",
+  "name": "ecli",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arians-code-hub/easy-node-cli.git"
+    "url": "git+https://github.com/arian-arka/ecli.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/arians-code-hub/easy-node-cli/issues"
+    "url": "https://github.com/arian-arka/ecli/issues"
   },
-  "homepage": "https://github.com/arians-code-hub/easy-node-cli#readme",
+  "homepage": "https://github.com/arian-arka/ecli#readme",
   "devDependencies": {
     "@types/node": "^20.12.10",
     "typescript": "^5.4.5"
