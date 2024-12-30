@@ -43,6 +43,7 @@ class rakutentechLaravelRequestDocs extends Command_1.Command {
         });
     }
     toKeyValue(requests, injections) {
+        var _a;
         const newRequests = {};
         for (const r of requests) {
             const uri = r.uri;
@@ -60,22 +61,26 @@ class rakutentechLaravelRequestDocs extends Command_1.Command {
                     type: integer ? 'integer' : (string ? 'string' : 'integer')
                 };
             }
-            let hasFile = false;
+            let hasFileInBody = false;
             for (let k in r.rules) {
                 const rule = r.rules[k][0];
                 if (!(!!rule))
                     continue;
-                hasFile = rule.split('|').find((v) => ['file', 'image', 'extensions', 'mimes', 'mimetypes'].includes(v)) != undefined;
-                if (hasFile)
+                hasFileInBody = rule.split('|').find((v) => ['file', 'image', 'extensions', 'mimes', 'mimetypes'].includes(v)) != undefined;
+                if (hasFileInBody)
                     break;
             }
             const key = uri + '@' + httpMethod;
+            const rules = {};
+            for (const rulekey in (_a = r.rules) !== null && _a !== void 0 ? _a : {})
+                rules[rulekey] = r.rules[rulekey][0].split('|');
             newRequests[key] = {
                 uri, httpMethod, uriParameters, controllerName,
                 controllerMethod: r.method,
                 okResponse: { type: 'string' },
                 middlewares: r.middlewares,
-                hasFile,
+                hasFileInBody,
+                rules,
             };
             if (key in injections) { // @ts-ignore
                 newRequests[key] = (0, Object_1.mergeDeep)(newRequests[key], injections[key]);

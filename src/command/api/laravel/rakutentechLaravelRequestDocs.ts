@@ -20,7 +20,7 @@ type IRequests = ({
 })[];
 type IInjections = {
     [key: string]: {
-        rules
+        rules: { [key: string]: string[] },
         controllerMethod?: IUriValueRequest[keyof IUriValueRequest]['controllerMethod'],
         controllerName?: IUriValueRequest[keyof IUriValueRequest]['controllerName'],
         uriParameters?: IUriValueRequest[keyof IUriValueRequest]['uriParameters'],
@@ -44,6 +44,7 @@ type IUriValueRequest = {
         hasFileInBody: boolean,
         okResponse: any,
         middlewares: string[],
+        rules: { [key: string]: string[] },
     }
 };
 
@@ -140,7 +141,7 @@ export default class rakutentechLaravelRequestDocs extends Command {
     }
 
     private toKeyValue(requests: IRequests, injections: IInjections): IUriValueRequest {
-        const newRequests : IUriValueRequest = {};
+        const newRequests: IUriValueRequest = {};
 
         for (const r of requests) {
             const uri = r.uri;
@@ -158,22 +159,27 @@ export default class rakutentechLaravelRequestDocs extends Command {
                     type: integer ? 'integer' : (string ? 'string' : 'integer')
                 }
             }
-            let hasFile = false;
+            let hasFileInBody = false;
             for (let k in r.rules) {
                 const rule = r.rules[k][0];
                 if (!(!!rule))
                     continue;
-                hasFile = rule.split('|').find((v) => ['file', 'image', 'extensions', 'mimes', 'mimetypes'].includes(v)) != undefined;
-                if (hasFile)
+                hasFileInBody = rule.split('|').find((v) => ['file', 'image', 'extensions', 'mimes', 'mimetypes'].includes(v)) != undefined;
+                if (hasFileInBody)
                     break;
             }
             const key = uri + '@' + httpMethod;
+            const rules: { [key: string]: string[] } = {};
+            for (const rulekey in r.rules ?? {})
+                rules[rulekey] = r.rules[rulekey][0].split('|');
+
             newRequests[key] = {
                 uri, httpMethod, uriParameters, controllerName,
                 controllerMethod: r.method,
                 okResponse: {type: 'string'},
                 middlewares: r.middlewares,
-                hasFile,
+                hasFileInBody,
+                rules,
             };
             if (key in injections) { // @ts-ignore
                 newRequests[key] = mergeDeep(newRequests[key], injections[key]);
