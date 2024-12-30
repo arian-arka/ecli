@@ -1,22 +1,29 @@
 import {
-    command,args
+    command, args
 } from "../lib/Args";
-import {Directory} from "../lib/File";
+import {Directory, File} from "../lib/File";
+import assert from "node:assert";
+export function commandToClsAndMethod(command:string,def = 'default') : [string,string,any]{
+    const splitted = command.split('.');
+    let method = 'index', path = '../command/';
+    if (File.isFile({path: './src/command/' + splitted.join('/') + '.ts'})) {
+        path += splitted.join('/');
+    } else {
+        assert(splitted.length > 1, 'Invalid command');
+        method = splitted[splitted.length - 1];
+        path += splitted.slice(0, splitted.length - 1).join('/');
+    }
+    const cls = require(path)[def];
+    return [method,cls,new cls];
+}
+export async function run(command: string, args: any): Promise<any> {
+    const [method,cls,obj] = commandToClsAndMethod(command);
 
-export function run(command: string, args: any): any {
-    const [cls,method] = command.split('.');
-    let path = '../command/' + cls;
-
-    if(Directory.isDir({path : './src/command/'+cls}))
-        path+=`/${cls}`;
-
-    const obj = new (require(path).default);
-
-    return obj[!!method ? method : 'index'](args);
+    return await obj[method](args);
 }
 
-export function runCli() {
+export async function runCli() {
     if (!command)
         return '';
-    return run(command, args);
+    return await run(command, args);
 }

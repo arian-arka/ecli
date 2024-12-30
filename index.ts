@@ -1,2 +1,4 @@
 import {runCli} from "./src/helper/runCommand";
-console.log(runCli() ?? '');
+(async () => {
+    console.log(await runCli() ?? '');
+})()

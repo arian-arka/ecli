@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gather = exports.gatherExcept = void 0;
+exports.mergeDeep = exports.isObject = exports.gather = exports.gatherExcept = void 0;
 // @ts-ignore
 const gatherExcept = (data, keys) => {
     const d = {};
@@ -23,3 +23,26 @@ const gather = (data, keys) => {
     return d;
 };
 exports.gather = gather;
+function isObject(item) {
+    return (item && typeof item === 'object' && !Array.isArray(item));
+}
+exports.isObject = isObject;
+function mergeDeep(target, ...sources) {
+    if (!sources.length)
+        return target;
+    const source = sources.shift();
+    if (isObject(target) && isObject(source)) {
+        for (const key in source) {
+            if (isObject(source[key])) {
+                if (!target[key])
+                    Object.assign(target, { [key]: {} });
+                mergeDeep(target[key], source[key]);
+            }
+            else {
+                Object.assign(target, { [key]: source[key] });
+            }
+        }
+    }
+    return mergeDeep(target, ...sources);
+}
+exports.mergeDeep = mergeDeep;
