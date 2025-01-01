@@ -8,7 +8,7 @@ type IObject = {
     [key: string]: {
         required: boolean,
         type?: 'numeric' | 'integer' | 'string' | 'decimal' | 'file' | 'boolean' | 'object' | 'array' | 'array-item'
-        children: IObject|[(IObject[keyof IObject])],
+        children: IObject | [(IObject[keyof IObject])],
         rules: string[],
     },
 
@@ -18,6 +18,9 @@ export default class laravelAdaptor extends Command {
     @terminal({
         description: 'Converts laravel validation rules to zod validation and generated types',
         paras: {
+            name: {
+                description: "name of the object validation and type",
+            },
             rules: {
                 description: "json rules in the format of {[key:string] : string[]} ",
                 example: '{"firstname":["required","string"]}'
@@ -28,6 +31,7 @@ export default class laravelAdaptor extends Command {
     @validateProps<Parameters<InstanceType<typeof laravelAdaptor>['index']>[0]>({
         type: "object",
         properties: {
+            name: {type: 'string'},
             defaults: {
                 type: 'object',
                 nullable: true,
@@ -46,16 +50,19 @@ export default class laravelAdaptor extends Command {
                 }
             }
         },
-        required: ["rules"],
+        required: ["rules", 'name'],
         additionalProperties: false
     })
     async index(args: {
+        name: string,
         rules: { [key: string]: string[] },
         defaults?: {
             required?: boolean
         }
-    }) : Promise<any> {
-        return this.toObject(args.rules,args.defaults);
+    }): Promise<any> {
+        const objectified = this.toObject(args.rules, args.defaults);
+        const zodObject = this.toZodObject('', objectified);
+        return {object: objectified, zodObject};
     }
 
     private checkHasRule(rule: string, rules: string[], remove = true) {
@@ -87,7 +94,7 @@ export default class laravelAdaptor extends Command {
                     if (tmpObj['type'] !== 'array')
                         tmpObj['type'] = 'array';
                     tmpObj['children'] = [{
-                        type:'array-item',
+                        type: 'array-item',
                         required: defaults?.required ?? true,
                         rules: [],
                         children: {}
@@ -160,13 +167,30 @@ export default class laravelAdaptor extends Command {
 
     private toZodObject(name: string, obj: IObject): string {
 
-        const runThroughArray = (obj ?: IObject[keyof IObject]) => {
-            if(!obj)
-                return '';
+        const runThroughRules = (rules: string[]) => {
+            let text = '';
 
+            if (rules.length) {
+                rules.forEach(wholeRule => {
+                    const indexOfQuote = wholeRule.indexOf(':');
+                    let values: string[] = [];
+                    if (indexOfQuote > -1)
+                        values = wholeRule.substring(indexOfQuote + 1).split(',');
+                    const rule = indexOfQuote > -1 ? wholeRule.substring(0, indexOfQuote) : wholeRule;
+                    if (rule in rulesConvertors) { // @ts-ignore
+                        text += '.' + rulesConvertors[rule](key, values, value.type) + '\n';
+                    } else if (rule in objectConvertors) { // @ts-ignore
+                        text += '.' + objectConvertors[rule](key, values, value.type) + '\n';
+                    } else text += `/* @unknown-rule -> [ ${rule} ] */`
+
+                });
+            }
+
+            return text;
         }
+
         const runThroughObject = (obj?: IObject): string => {
-            if(!obj)
+            if (!obj)
                 return '';
 
             let text = '';
@@ -177,7 +201,7 @@ export default class laravelAdaptor extends Command {
                 if (!value.type) {
                     if (Object.keys(value.children).length) {
                         value.type = 'object';
-                        text += rulesConvertors.object(key, [runThroughObject(value.children ?? {})], !value.required);
+                        text += rulesConvertors.object(key, [runThroughObject((value.children as IObject) ?? undefined)], !value.required);
                     } else {
                         value.type = 'string';
                         text += rulesConvertors.string(key);
@@ -193,27 +217,14 @@ export default class laravelAdaptor extends Command {
                 else if (value.type === 'boolean')
                     text += rulesConvertors.boolean(key);
                 else if (value.type === 'object')
-                    text += rulesConvertors.object(key, [runThroughObject((value.children as IObject)  ?? undefined)], !value.required);
-                else if (value.type === 'array'){
+                    text += rulesConvertors.object(key, [runThroughObject((value.children as IObject) ?? undefined)], !value.required);
+                else if (value.type === 'array') {
                     // @ts-ignore
-                    text += rulesConvertors.array(key, [runThroughArray(value.children)], !value.required);
+                    text += rulesConvertors.array(key, [runThroughObject(value.children)], !value.required);
                 }
 
-                if (value.rules.length) {
-                    value.rules.forEach(wholeRule => {
-                        const indexOfQuote = wholeRule.indexOf(':');
-                        let values: string[] = [];
-                        if (indexOfQuote > -1)
-                            values = wholeRule.substring(indexOfQuote + 1).split(',');
-                        const rule = indexOfQuote > -1 ? wholeRule.substring(0, indexOfQuote) : wholeRule;
-                        if (rule in rulesConvertors) { // @ts-ignore
-                            text += '.' + rulesConvertors[rule](key, values, value.type) + '\n';
-                        } else if (rule in objectConvertors) { // @ts-ignore
-                            text += '.' + objectConvertors[rule](key, values, value.type) + '\n';
-                        } else text += `/* @unknown-rule -> [ ${rule} ] */`
+                text += runThroughRules(value.rules);
 
-                    });
-                }
                 text += ',\n';
 
             }
@@ -221,7 +232,7 @@ export default class laravelAdaptor extends Command {
             return text;
         }
 
-        return rulesConvertors.object('', [runThroughObject(obj['object'].children)], true);
+        return rulesConvertors.object('', [runThroughObject((obj['object'].children as IObject))], true);
     }
 
 

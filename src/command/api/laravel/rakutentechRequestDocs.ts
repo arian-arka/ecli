@@ -48,7 +48,7 @@ type IUriValueRequest = {
         okResponse: any,
         middlewares: string[],
         rules: { [key: string]: string[] },
-        rulesObject : any,
+        rulesObject: any,
     }
 };
 
@@ -211,7 +211,7 @@ export default class rakutentechRequestDocs extends Command {
                 middlewares: r.middlewares,
                 hasFileInBody,
                 rules,
-                rulesObject : await adaptor.index({rules}),
+                rulesObject: await adaptor.index({name: controllerName + '_' + r.method, rules}),
             };
             if (key in injections) { // @ts-ignore
                 newRequests[key] = mergeDeep(newRequests[key], injections[key]);
