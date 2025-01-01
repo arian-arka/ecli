@@ -15,9 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Command_1 = require("../../class/Command");
 const terminal_1 = __importDefault(require("../../decorator/terminal"));
 const validateProps_1 = __importDefault(require("../../decorator/validateProps"));
+const laravelAdaptorRules_1 = require("./laravelAdaptorRules");
 class laravelAdaptor extends Command_1.Command {
     async index(args) {
-        return this.toObject(args.rules, args.defaults);
+        const objectified = this.toObject(args.rules, args.defaults);
+        const zodObject = this.toZodObject('', objectified);
+        return { object: objectified, zodObject };
     }
     checkHasRule(rule, rules, remove = true) {
         const index = rules.indexOf(rule);
@@ -108,7 +111,6 @@ class laravelAdaptor extends Command_1.Command {
                                 children: {}
                             };
                         });
-                        values.splice(i, 1);
                         break;
                     }
                 }
@@ -117,12 +119,77 @@ class laravelAdaptor extends Command_1.Command {
         }
         return obj;
     }
+    toZodObject(name, obj) {
+        const runThroughRules = (key, rules, type) => {
+            let text = '';
+            if (rules.length) {
+                rules.forEach(wholeRule => {
+                    const indexOfQuote = wholeRule.indexOf(':');
+                    let values = [];
+                    if (indexOfQuote > -1)
+                        values = wholeRule.substring(indexOfQuote + 1).split(',');
+                    const rule = indexOfQuote > -1 ? wholeRule.substring(0, indexOfQuote) : wholeRule;
+                    if (rule in laravelAdaptorRules_1.rulesConvertors) { // @ts-ignore
+                        text += '.' + laravelAdaptorRules_1.rulesConvertors[rule](key, values, type) + '\n';
+                    }
+                    else if (rule in laravelAdaptorRules_1.objectConvertors) { // @ts-ignore
+                        text += '.' + laravelAdaptorRules_1.objectConvertors[rule](key, values, type) + '\n';
+                    }
+                    else
+                        text += `/* @unknown-rule -> [ ${rule} ] */`;
+                });
+            }
+            return text;
+        };
+        const runThroughObject = (obj) => {
+            var _a, _b;
+            if (!obj)
+                return '';
+            let text = '';
+            for (const [key, value] of Object.entries(obj)) {
+                text += `${key} : \n`;
+                if (!value.type) {
+                    if (Object.keys(value.children).length) {
+                        value.type = 'object';
+                        text += laravelAdaptorRules_1.rulesConvertors.object(key, [runThroughObject((_a = value.children) !== null && _a !== void 0 ? _a : undefined)], !value.required);
+                    }
+                    else {
+                        value.type = 'string';
+                        text += laravelAdaptorRules_1.rulesConvertors.string(key);
+                    }
+                }
+                else if (value.type === 'numeric')
+                    text += laravelAdaptorRules_1.rulesConvertors.number(key);
+                else if (value.type === 'integer')
+                    text += laravelAdaptorRules_1.rulesConvertors.integer(key);
+                else if (value.type === 'string')
+                    text += laravelAdaptorRules_1.rulesConvertors.string(key);
+                else if (value.type === 'file')
+                    text += laravelAdaptorRules_1.rulesConvertors.file(key, !value.required);
+                else if (value.type === 'boolean')
+                    text += laravelAdaptorRules_1.rulesConvertors.boolean(key);
+                else if (value.type === 'object')
+                    text += laravelAdaptorRules_1.rulesConvertors.object(key, [runThroughObject((_b = value.children) !== null && _b !== void 0 ? _b : undefined)], !value.required);
+                else if (value.type === 'array') {
+                    // @ts-ignore
+                    text += laravelAdaptorRules_1.rulesConvertors.array(key, [runThroughObject(value.children)], !value.required);
+                }
+                text += runThroughRules(key, value.rules, value.type);
+                text += ',\n';
+            }
+            return text;
+        };
+        return laravelAdaptorRules_1.rulesConvertors.object('', [runThroughObject(obj['object'].children)], true);
+    }
 }
 exports.default = laravelAdaptor;
 __decorate([
     (0, terminal_1.default)({
         description: 'Converts laravel validation rules to zod validation and generated types',
         paras: {
+            name: {
+                description: "name of the object validation and type",
+            },
             rules: {
                 description: "json rules in the format of {[key:string] : string[]} ",
                 example: '{"firstname":["required","string"]}'
@@ -132,6 +199,7 @@ __decorate([
     (0, validateProps_1.default)({
         type: "object",
         properties: {
+            name: { type: 'string' },
             defaults: {
                 type: 'object',
                 nullable: true,
@@ -150,7 +218,7 @@ __decorate([
                 }
             }
         },
-        required: ["rules"],
+        required: ["rules", 'name'],
         additionalProperties: false
     }),
     __metadata("design:type", Function),

@@ -28,7 +28,6 @@ const templates = {
     }
 };
 
-
 export const rulesConvertors = {
     'file'(key: string, optional: boolean) {
         return 'z.any().' + templates.refine(`${optional ? '!v /* can be optional */ ||' : ''} v instanceof File`, key, 'file')

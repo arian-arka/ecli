@@ -1,10 +1,9 @@
-import {Command} from "../../class/Command";
-import {basePath} from "../../helper/path";
-import terminal from "../../decorator/terminal";
-import validateProps from "../../decorator/validateProps";
-import {objectConvertors, rulesConvertors} from "./laravelAdaptorRules";
+import {objectConvertors, rulesConvertors} from "../adaptor/laravel";
 
-type IObject = {
+export type ILaravelConvertorDefaults = {
+    required?: boolean
+};
+export type IObject = {
     [key: string]: {
         required: boolean,
         type?: 'numeric' | 'integer' | 'string' | 'decimal' | 'file' | 'boolean' | 'object' | 'array' | 'array-item'
@@ -14,55 +13,12 @@ type IObject = {
 
 }
 
-export default class laravelAdaptor extends Command {
-    @terminal({
-        description: 'Converts laravel validation rules to zod validation and generated types',
-        paras: {
-            name: {
-                description: "name of the object validation and type",
-            },
-            rules: {
-                description: "json rules in the format of {[key:string] : string[]} ",
-                example: '{"firstname":["required","string"]}'
-            },
-        }
-    })
-
-    @validateProps<Parameters<InstanceType<typeof laravelAdaptor>['index']>[0]>({
-        type: "object",
-        properties: {
-            name: {type: 'string'},
-            defaults: {
-                type: 'object',
-                nullable: true,
-                properties: {
-                    required: {type: "boolean", nullable: true, default: true}
-                }
-            },
-            rules: {
-                type: "object",
-                required: [],
-                additionalProperties: {
-                    type: "array",
-                    items: {
-                        type: "string"
-                    }
-                }
-            }
-        },
-        required: ["rules", 'name'],
-        additionalProperties: false
-    })
-    async index(args: {
-        name: string,
-        rules: { [key: string]: string[] },
-        defaults?: {
-            required?: boolean
-        }
-    }): Promise<any> {
-        const objectified = this.toObject(args.rules, args.defaults);
-        const zodObject = this.toZodObject('', objectified);
-        return {object: objectified, zodObject};
+export class LaravelConvertor {
+    static rulesToType(name: string, rules: { [key: string]: string[] }, defaults: ILaravelConvertorDefaults = {required:true}): string {
+        const convertor = new LaravelConvertor();
+        const obj = convertor.toObject(rules, defaults);
+        const zodStr = convertor.toZodObject(name, obj);
+        return zodStr;
     }
 
     private checkHasRule(rule: string, rules: string[], remove = true) {
@@ -73,9 +29,9 @@ export default class laravelAdaptor extends Command {
         return true;
     }
 
-    private toObject(rules: {
+    public toObject(rules: {
         [key: string]: string[]
-    }, defaults: Parameters<InstanceType<typeof laravelAdaptor>['index']>[0]['defaults']): IObject {
+    }, defaults: ILaravelConvertorDefaults): IObject {
         const obj: IObject = {
             'object': {
                 required: true,
@@ -165,9 +121,9 @@ export default class laravelAdaptor extends Command {
         return obj;
     }
 
-    private toZodObject(name: string, obj: IObject): string {
+    public toZodObject(name: string, obj: IObject): string {
 
-        const runThroughRules = (rules: string[]) => {
+        const runThroughRules = (key: string, rules: string[], type: string) => {
             let text = '';
 
             if (rules.length) {
@@ -178,9 +134,9 @@ export default class laravelAdaptor extends Command {
                         values = wholeRule.substring(indexOfQuote + 1).split(',');
                     const rule = indexOfQuote > -1 ? wholeRule.substring(0, indexOfQuote) : wholeRule;
                     if (rule in rulesConvertors) { // @ts-ignore
-                        text += '.' + rulesConvertors[rule](key, values, value.type) + '\n';
+                        text += '.' + rulesConvertors[rule](key, values, type) + '\n';
                     } else if (rule in objectConvertors) { // @ts-ignore
-                        text += '.' + objectConvertors[rule](key, values, value.type) + '\n';
+                        text += '.' + objectConvertors[rule](key, values, type) + '\n';
                     } else text += `/* @unknown-rule -> [ ${rule} ] */`
 
                 });
@@ -223,7 +179,7 @@ export default class laravelAdaptor extends Command {
                     text += rulesConvertors.array(key, [runThroughObject(value.children)], !value.required);
                 }
 
-                text += runThroughRules(value.rules);
+                text += runThroughRules(key, value.rules, value.type);
 
                 text += ',\n';
 
@@ -234,6 +190,5 @@ export default class laravelAdaptor extends Command {
 
         return rulesConvertors.object('', [runThroughObject((obj['object'].children as IObject))], true);
     }
-
 
 }

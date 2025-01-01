@@ -103,7 +103,7 @@ class rakutentechRequestDocs extends Command_1.Command {
                 middlewares: r.middlewares,
                 hasFileInBody,
                 rules,
-                rulesObject: await adaptor.index({ rules }),
+                rulesObject: await adaptor.index({ name: controllerName + '_' + r.method, rules }),
             };
             if (key in injections) { // @ts-ignore
                 newRequests[key] = (0, Object_1.mergeDeep)(newRequests[key], injections[key]);

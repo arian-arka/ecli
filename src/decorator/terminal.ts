@@ -6,6 +6,10 @@ export default function terminal(props:{
             example?: string
         },
     },
+    examples ?: {
+        example : string,
+        description?:string,
+    }[],
 }) {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         if(!('__terminal__' in target))
