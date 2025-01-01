@@ -7,3 +7,6 @@ export function basePath(...args : string[]) : string{
     const base = !!module ? module+'/../../' : './';
     return path.resolve(base,...args);
 }
+export function joinPaths(...args:string[]) : string {
+    return path.join(...args);
+}

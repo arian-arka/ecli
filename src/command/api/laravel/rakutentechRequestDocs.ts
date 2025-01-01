@@ -2,6 +2,9 @@ import {Command} from "../../../class/Command";
 import terminal from "../../../decorator/terminal";
 import validateProps from "../../../decorator/validateProps";
 import {mergeDeep} from "../../../lib/Object";
+import {Directory, File} from "../../../lib/File";
+import {joinPaths} from "../../../helper/path";
+import laravelAdaptor from "../../zod/laravelAdaptor";
 
 type IRequests = ({
     uri: string,
@@ -45,10 +48,11 @@ type IUriValueRequest = {
         okResponse: any,
         middlewares: string[],
         rules: { [key: string]: string[] },
+        rulesObject : any,
     }
 };
 
-export default class rakutentechLaravelRequestDocs extends Command {
+export default class rakutentechRequestDocs extends Command {
     @terminal({
         description: 'sample description',
         paras: {
@@ -72,7 +76,7 @@ export default class rakutentechLaravelRequestDocs extends Command {
         }
     })
 
-    @validateProps<Parameters<InstanceType<typeof rakutentechLaravelRequestDocs>['index']>[0]>({
+    @validateProps<Parameters<InstanceType<typeof rakutentechRequestDocs>['index']>[0]>({
         type: "object",
         properties: {
             filter: {
@@ -101,6 +105,11 @@ export default class rakutentechLaravelRequestDocs extends Command {
                 format: 'uri',
                 default: 'http://127.0.0.1:8000/request-docs/api?json=true&showGet=true&showPost=true&showDelete=true&showPut=true&showPatch=true&showHead=false&sort=default&groupby=default'
             },
+            out: {
+                type: "string",
+                nullable: true,
+                default: undefined,
+            },
         },
         required: [],
         additionalProperties: false,
@@ -111,7 +120,9 @@ export default class rakutentechLaravelRequestDocs extends Command {
         withPrefix?: string,
         withoutPrefix?: string,
         filter?: string,
+        out?: string,
     }) {
+        console.log('args', args);
         const filters = [];
         if (!!args.withPrefix)
             filters.push((req: IRequests[0]) => req.uri.startsWith(args.withPrefix ?? ''));
@@ -122,8 +133,27 @@ export default class rakutentechLaravelRequestDocs extends Command {
         if (!!args.filter)
             filters.push((req: IRequests[0]) => eval(`(${args.filter ?? ''})(req)`));
         const requests = this.filterEndPoint(
-            await this.fetchData(args.uri ?? '')
+            await this.fetchData(args.uri ?? ''), filters
         );
+        const keyValue = await this.toKeyValue(requests);
+
+
+        if (!!args.out) {
+            Directory.create({
+                path: args.out,
+                check: false,
+                recursive: true
+            });
+            File.writeJson({
+                data: requests,
+                path: joinPaths(args.out, 'requests.json')
+            });
+            File.writeJson({
+                data: keyValue,
+                path: joinPaths(args.out, 'keyValue.json')
+            });
+        }
+
     }
 
     private async fetchData(uri: string): Promise<IRequests> {
@@ -133,16 +163,17 @@ export default class rakutentechLaravelRequestDocs extends Command {
 
     private filterEndPoint(requests: IRequests, filters: (Function)[] = []): IRequests {
         return requests.filter(r => {
-            for (const f of filters)
+            for (const f of filters) {
                 if (!f(r))
                     return false;
+            }
             return true;
         });
     }
 
-    private toKeyValue(requests: IRequests, injections: IInjections): IUriValueRequest {
+    private async toKeyValue(requests: IRequests, injections: IInjections = {}): Promise<IUriValueRequest> {
         const newRequests: IUriValueRequest = {};
-
+        const adaptor = new laravelAdaptor;
         for (const r of requests) {
             const uri = r.uri;
             const httpMethod = r.http_method.toUpperCase();
@@ -180,6 +211,7 @@ export default class rakutentechLaravelRequestDocs extends Command {
                 middlewares: r.middlewares,
                 hasFileInBody,
                 rules,
+                rulesObject : await adaptor.index({rules}),
             };
             if (key in injections) { // @ts-ignore
                 newRequests[key] = mergeDeep(newRequests[key], injections[key]);
@@ -188,5 +220,6 @@ export default class rakutentechLaravelRequestDocs extends Command {
 
         return newRequests;
     }
+
 
 }

@@ -1,0 +1,5739 @@
+{
+  "api/admin/category/property/value/of-property/{categoryProperty}@GET": {
+    "uri": "api/admin/category/property/value/of-property/{categoryProperty}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "categoryProperty": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryPropertyValue",
+    "controllerMethod": "valuesOfProperty",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/value/{categoryPropertyValue}@PUT": {
+    "uri": "api/admin/category/property/value/{categoryPropertyValue}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "categoryPropertyValue": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryPropertyValue",
+    "controllerMethod": "update",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update category"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "value": [
+        "max:500",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "hint": [
+        "max:500"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "value": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "hint": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/value/{categoryPropertyValue}@DELETE": {
+    "uri": "api/admin/category/property/value/{categoryPropertyValue}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "categoryPropertyValue": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryPropertyValue",
+    "controllerMethod": "destroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/value/{categoryPropertyValue}@GET": {
+    "uri": "api/admin/category/property/value/{categoryPropertyValue}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "categoryPropertyValue": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryPropertyValue",
+    "controllerMethod": "show",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/value/{categoryProperty}@POST": {
+    "uri": "api/admin/category/property/value/{categoryProperty}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "categoryProperty": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryPropertyValue",
+    "controllerMethod": "store",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store category"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "value": [
+        "max:500",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "hint": [
+        "max:500"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "value": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "hint": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/of-category/{category}@GET": {
+    "uri": "api/admin/category/property/of-category/{category}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "category": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryProperty",
+    "controllerMethod": "propertiesOfCategory",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/{categoryProperty}@PUT": {
+    "uri": "api/admin/category/property/{categoryProperty}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "categoryProperty": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryProperty",
+    "controllerMethod": "update",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update category"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "key": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "type": [
+        "in:string"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "key": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "type": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "in:string"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/{categoryProperty}@DELETE": {
+    "uri": "api/admin/category/property/{categoryProperty}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "categoryProperty": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryProperty",
+    "controllerMethod": "destroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/{categoryProperty}@GET": {
+    "uri": "api/admin/category/property/{categoryProperty}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "categoryProperty": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryProperty",
+    "controllerMethod": "show",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/property/{category}@POST": {
+    "uri": "api/admin/category/property/{category}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "category": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategoryProperty",
+    "controllerMethod": "store",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store category"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "key": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "type": [
+        "in:string"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "key": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "type": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "in:string"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/all@GET": {
+    "uri": "api/admin/category/all",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminCategory",
+    "controllerMethod": "all",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/{category}@PUT": {
+    "uri": "api/admin/category/{category}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "category": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategory",
+    "controllerMethod": "update",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update category"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "name": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "name_fa": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "image": [
+        "sometimes",
+        "image",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "name_fa": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/{category}@DELETE": {
+    "uri": "api/admin/category/{category}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "category": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategory",
+    "controllerMethod": "destroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/{category}@GET": {
+    "uri": "api/admin/category/{category}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "category": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategory",
+    "controllerMethod": "show",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category/{parent?}@POST": {
+    "uri": "api/admin/category/{parent?}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "parent": {
+        "required": false,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminCategory",
+    "controllerMethod": "store",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store category"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "name": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "name_fa": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "image": [
+        "sometimes",
+        "image",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "name_fa": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/category@GET": {
+    "uri": "api/admin/category",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminCategory",
+    "controllerMethod": "index",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view category"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "name": [
+        "max:255"
+      ],
+      "order_by": [
+        "in:id"
+      ],
+      "order_by_dir": [
+        "required_with:order_by",
+        "in:asc,desc"
+      ],
+      "per_page": [
+        "min:1",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "order_by": {
+            "required": false,
+            "rules": [
+              "in:id"
+            ],
+            "children": {}
+          },
+          "order_by_dir": {
+            "required": true,
+            "rules": [
+              "required_with:order_by",
+              "in:asc,desc"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/search-by-title@GET": {
+    "uri": "api/admin/product/search-by-title",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminProduct",
+    "controllerMethod": "indexByTitle",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "properties": [
+        "min:0",
+        "max:100"
+      ],
+      "properties.*": [
+        "exists:category_property_values,id"
+      ],
+      "category_id": [
+        "min:1",
+        "exists:categories,id"
+      ],
+      "min_price": [
+        "min:0",
+        "max:999999999999"
+      ],
+      "max_price": [
+        "min:0",
+        "max:999999999999",
+        "gte:min_price"
+      ],
+      "stock": [
+        "in:true,false"
+      ],
+      "published": [
+        "in:true,false"
+      ],
+      "title": [
+        "max:500"
+      ],
+      "test": [
+        "Illuminate\\Validation\\Rules\\RequiredIf"
+      ],
+      "order_by": [
+        "in:id,price,view,sold,rating"
+      ],
+      "order_by_dir": [
+        "required_with:order_by",
+        "in:asc,desc"
+      ],
+      "per_page": [
+        "min:1",
+        "max:5000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "properties": {
+            "type": "array",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "exists:category_property_values,id"
+                ],
+                "children": {}
+              }
+            ]
+          },
+          "category_id": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "exists:categories,id"
+            ],
+            "children": {}
+          },
+          "min_price": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:999999999999"
+            ],
+            "children": {}
+          },
+          "max_price": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:999999999999",
+              "gte:min_price"
+            ],
+            "children": {}
+          },
+          "stock": {
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "published": {
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "test": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "Illuminate\\Validation\\Rules\\RequiredIf"
+            ],
+            "children": {}
+          },
+          "order_by": {
+            "required": false,
+            "rules": [
+              "in:id,price,view,sold,rating"
+            ],
+            "children": {}
+          },
+          "order_by_dir": {
+            "required": true,
+            "rules": [
+              "required_with:order_by",
+              "in:asc,desc"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:5000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/images/{productImage}@DELETE": {
+    "uri": "api/admin/product/images/{productImage}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "productImage": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "destroyImage",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/images/{productImage}@PUT": {
+    "uri": "api/admin/product/images/{productImage}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "productImage": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "updateImage",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "path": [
+        "sometimes",
+        "image",
+        "max:1000"
+      ],
+      "is_cover": [
+        "in:true,false"
+      ],
+      "title": [
+        "max:255"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "path": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "is_cover": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/images/{product}@POST": {
+    "uri": "api/admin/product/images/{product}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "storeImage",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "path": [
+        "image",
+        "max:1000"
+      ],
+      "is_cover": [
+        "in:true,false"
+      ],
+      "title": [
+        "max:255"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "path": {
+            "type": "file",
+            "required": true,
+            "rules": [
+              "image",
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "is_cover": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/images/{product}@GET": {
+    "uri": "api/admin/product/images/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "images",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/meta/{product}@GET": {
+    "uri": "api/admin/product/meta/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "getMeta",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/meta/{product}@POST": {
+    "uri": "api/admin/product/meta/{product}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "setMeta",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "title": [
+        "max:1000"
+      ],
+      "description": [
+        "max:1000"
+      ],
+      "twitter:card": [
+        "max:1000"
+      ],
+      "twitter:site": [
+        "max:1000"
+      ],
+      "twitter:app:id:googleplay": [
+        "max:1000"
+      ],
+      "twitter:creator": [
+        "max:1000"
+      ],
+      "twitter:title": [
+        "max:1000"
+      ],
+      "twitter:description": [
+        "max:1000"
+      ],
+      "twitter:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:type": [
+        "max:1000"
+      ],
+      "og:description": [
+        "max:1000"
+      ],
+      "og:site_name": [
+        "max:1000"
+      ],
+      "og:url": [
+        "max:1000"
+      ],
+      "og:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:locale": [
+        "max:1000"
+      ],
+      "og:availability": [
+        "max:1000"
+      ],
+      "google-site-verification": [
+        "max:1000"
+      ],
+      "keywords": [
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:card": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:site": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:app:id:googleplay": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:creator": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:type": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:site_name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:url": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:locale": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:availability": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "google-site-verification": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "keywords": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/meta/fa/{product}@GET": {
+    "uri": "api/admin/product/meta/fa/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "getMetaFa",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/meta/fa/{product}@POST": {
+    "uri": "api/admin/product/meta/fa/{product}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "setMetaFa",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "title": [
+        "max:1000"
+      ],
+      "description": [
+        "max:1000"
+      ],
+      "twitter:card": [
+        "max:1000"
+      ],
+      "twitter:site": [
+        "max:1000"
+      ],
+      "twitter:app:id:googleplay": [
+        "max:1000"
+      ],
+      "twitter:creator": [
+        "max:1000"
+      ],
+      "twitter:title": [
+        "max:1000"
+      ],
+      "twitter:description": [
+        "max:1000"
+      ],
+      "twitter:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:type": [
+        "max:1000"
+      ],
+      "og:description": [
+        "max:1000"
+      ],
+      "og:site_name": [
+        "max:1000"
+      ],
+      "og:url": [
+        "max:1000"
+      ],
+      "og:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:locale": [
+        "max:1000"
+      ],
+      "og:availability": [
+        "max:1000"
+      ],
+      "google-site-verification": [
+        "max:1000"
+      ],
+      "keywords": [
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:card": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:site": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:app:id:googleplay": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:creator": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:type": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:site_name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:url": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:locale": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:availability": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "google-site-verification": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "keywords": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/features/fa/{product}@PUT": {
+    "uri": "api/admin/product/features/fa/{product}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "setFeaturesFa",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "features": [
+        "min:0",
+        "max:100"
+      ],
+      "features.*.section": [
+        "max:255"
+      ],
+      "features.*.values": [
+        "min:0",
+        "max:25"
+      ],
+      "features.*.values.*.key": [
+        "required",
+        "max:255"
+      ],
+      "features.*.values.*.value": [
+        "required",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "features": {
+            "type": "array",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": [
+              {
+                "type": "array-item",
+                "required": true,
+                "rules": [],
+                "children": {
+                  "values": {
+                    "type": "array",
+                    "required": true,
+                    "rules": [],
+                    "children": [
+                      {
+                        "type": "array-item",
+                        "required": true,
+                        "rules": [],
+                        "children": {
+                          "value": {
+                            "type": "string",
+                            "required": true,
+                            "rules": [
+                              "required",
+                              "max:1000"
+                            ],
+                            "children": {}
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/features/{product}@PUT": {
+    "uri": "api/admin/product/features/{product}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "setFeatures",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "features": [
+        "min:0",
+        "max:100"
+      ],
+      "features.*.section": [
+        "max:255"
+      ],
+      "features.*.values": [
+        "min:0",
+        "max:25"
+      ],
+      "features.*.values.*.key": [
+        "required",
+        "max:255"
+      ],
+      "features.*.values.*.value": [
+        "required",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "features": {
+            "type": "array",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": [
+              {
+                "type": "array-item",
+                "required": true,
+                "rules": [],
+                "children": {
+                  "values": {
+                    "type": "array",
+                    "required": true,
+                    "rules": [],
+                    "children": [
+                      {
+                        "type": "array-item",
+                        "required": true,
+                        "rules": [],
+                        "children": {
+                          "value": {
+                            "type": "string",
+                            "required": true,
+                            "rules": [
+                              "required",
+                              "max:1000"
+                            ],
+                            "children": {}
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/property/available/{product}@GET": {
+    "uri": "api/admin/product/property/available/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "availableProperties",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/property/{productProperty}@DELETE": {
+    "uri": "api/admin/product/property/{productProperty}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "productProperty": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "unsetProperty",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/property/{product}@GET": {
+    "uri": "api/admin/product/property/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "showProperties",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/property/{product}/{categoryPropertyValue}@PUT": {
+    "uri": "api/admin/product/property/{product}/{categoryPropertyValue}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      },
+      "categoryPropertyValue": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "setProperty",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/categories/{product}@GET": {
+    "uri": "api/admin/product/categories/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "showCategories",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/categories/{product}@PUT": {
+    "uri": "api/admin/product/categories/{product}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "setCategories",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "categories": [
+        "min:0",
+        "max:10"
+      ],
+      "categories.*": [
+        "distinct",
+        "exists:categories,id"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "categories": {
+            "type": "array",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:10"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "distinct",
+                  "exists:categories,id"
+                ],
+                "children": {}
+              }
+            ]
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/stock/{product}@PUT": {
+    "uri": "api/admin/product/stock/{product}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "updateStock",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "stock": [
+        "min:0",
+        "max:9999999999"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "stock": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:9999999999"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/stock/{product}@GET": {
+    "uri": "api/admin/product/stock/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "showStock",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/publish/{product}@PUT": {
+    "uri": "api/admin/product/publish/{product}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "publish",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "publish": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "publish": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/{product}@DELETE": {
+    "uri": "api/admin/product/{product}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "destroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/{product}@PUT": {
+    "uri": "api/admin/product/{product}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "update",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "category_id": [
+        "exists:categories,id"
+      ],
+      "title": [
+        "max:500"
+      ],
+      "title_fa": [
+        "max:500"
+      ],
+      "subtitle": [
+        "max:500"
+      ],
+      "subtitle_fa": [
+        "max:500"
+      ],
+      "price": [
+        "min:0",
+        "max:9999999999"
+      ],
+      "brief_info": [
+        "max:65000"
+      ],
+      "brief_info_fa": [
+        "max:65000"
+      ],
+      "about": [
+        "max:65000"
+      ],
+      "about_fa": [
+        "max:65000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "category_id": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "exists:categories,id"
+            ],
+            "children": {}
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "title_fa": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "subtitle": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "subtitle_fa": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "price": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:9999999999"
+            ],
+            "children": {}
+          },
+          "brief_info": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          },
+          "brief_info_fa": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          },
+          "about": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          },
+          "about_fa": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product/{product}@GET": {
+    "uri": "api/admin/product/{product}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "product": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminProduct",
+    "controllerMethod": "show",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product@POST": {
+    "uri": "api/admin/product",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminProduct",
+    "controllerMethod": "store",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "category_id": [
+        "exists:categories,id"
+      ],
+      "title": [
+        "max:500"
+      ],
+      "title_fa": [
+        "max:500"
+      ],
+      "subtitle": [
+        "max:500"
+      ],
+      "subtitle_fa": [
+        "max:500"
+      ],
+      "price": [
+        "min:0",
+        "max:9999999999"
+      ],
+      "brief_info": [
+        "max:65000"
+      ],
+      "brief_info_fa": [
+        "max:65000"
+      ],
+      "about": [
+        "max:65000"
+      ],
+      "about_fa": [
+        "max:65000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "category_id": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "exists:categories,id"
+            ],
+            "children": {}
+          },
+          "title": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "title_fa": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "subtitle": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "subtitle_fa": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "price": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:9999999999"
+            ],
+            "children": {}
+          },
+          "brief_info": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          },
+          "brief_info_fa": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          },
+          "about": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          },
+          "about_fa": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/product@GET": {
+    "uri": "api/admin/product",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminProduct",
+    "controllerMethod": "index",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view product"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "properties": [
+        "min:0",
+        "max:100"
+      ],
+      "properties.*": [
+        "exists:category_property_values,id"
+      ],
+      "category_id": [
+        "min:1",
+        "exists:categories,id"
+      ],
+      "min_price": [
+        "min:0",
+        "max:999999999999"
+      ],
+      "max_price": [
+        "min:0",
+        "max:999999999999",
+        "gte:min_price"
+      ],
+      "stock": [
+        "in:true,false"
+      ],
+      "published": [
+        "in:true,false"
+      ],
+      "title": [
+        "max:500"
+      ],
+      "test": [
+        "Illuminate\\Validation\\Rules\\RequiredIf"
+      ],
+      "order_by": [
+        "in:id,price,view,sold,rating"
+      ],
+      "order_by_dir": [
+        "required_with:order_by",
+        "in:asc,desc"
+      ],
+      "per_page": [
+        "min:1",
+        "max:5000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "properties": {
+            "type": "array",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "exists:category_property_values,id"
+                ],
+                "children": {}
+              }
+            ]
+          },
+          "category_id": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "exists:categories,id"
+            ],
+            "children": {}
+          },
+          "min_price": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:999999999999"
+            ],
+            "children": {}
+          },
+          "max_price": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:999999999999",
+              "gte:min_price"
+            ],
+            "children": {}
+          },
+          "stock": {
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "published": {
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "test": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "Illuminate\\Validation\\Rules\\RequiredIf"
+            ],
+            "children": {}
+          },
+          "order_by": {
+            "required": false,
+            "rules": [
+              "in:id,price,view,sold,rating"
+            ],
+            "children": {}
+          },
+          "order_by_dir": {
+            "required": true,
+            "rules": [
+              "required_with:order_by",
+              "in:asc,desc"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:5000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/product/of-discount/{discount}@GET": {
+    "uri": "api/admin/discount/product/of-discount/{discount}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "discount": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "productsOfDiscount",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "title": [
+        "max:500"
+      ],
+      "per_page": [
+        "min:1",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/product/{discountProduct}@PUT": {
+    "uri": "api/admin/discount/product/{discountProduct}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "discountProduct": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "updateProduct",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "percent": [
+        "min:0",
+        "max:100"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "percent": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/product/{discountProduct}@DELETE": {
+    "uri": "api/admin/discount/product/{discountProduct}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "discountProduct": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "destroyProduct",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/product/{discountProduct}@GET": {
+    "uri": "api/admin/discount/product/{discountProduct}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "discountProduct": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "showProduct",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/product/{discount}@POST": {
+    "uri": "api/admin/discount/product/{discount}",
+    "httpMethod": "POST",
+    "uriParameters": {
+      "discount": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "storeProduct",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "percent": [
+        "min:0",
+        "max:100"
+      ],
+      "product_id": [
+        "exists:products,id",
+        "unique:discount_products,product_id"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "percent": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": {}
+          },
+          "product_id": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "exists:products,id",
+              "unique:discount_products,product_id"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/code/{discountCode}@PUT": {
+    "uri": "api/admin/discount/code/{discountCode}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "discountCode": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "updateCode",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "name": [
+        "max:500",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "code": [
+        "max:500",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "percent": [
+        "min:0",
+        "max:100"
+      ],
+      "starts_at": [
+        "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+      ],
+      "ends_at": [
+        "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+      ],
+      "activate": [],
+      "show_on_landing_shop": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "code": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "percent": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": {}
+          },
+          "starts_at": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+            ],
+            "children": {}
+          },
+          "ends_at": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+            ],
+            "children": {}
+          },
+          "activate": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          },
+          "show_on_landing_shop": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/code/{discountCode}@DELETE": {
+    "uri": "api/admin/discount/code/{discountCode}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "discountCode": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "destroyCode",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/code/{discountCode}@GET": {
+    "uri": "api/admin/discount/code/{discountCode}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "discountCode": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "showCode",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/code@POST": {
+    "uri": "api/admin/discount/code",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "storeCode",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "name": [
+        "max:500",
+        "unique:discount_codes,name"
+      ],
+      "code": [
+        "max:500",
+        "unique:discount_codes,code"
+      ],
+      "percent": [
+        "min:0",
+        "max:100"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "unique:discount_codes,name"
+            ],
+            "children": {}
+          },
+          "code": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "unique:discount_codes,code"
+            ],
+            "children": {}
+          },
+          "percent": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/code@GET": {
+    "uri": "api/admin/discount/code",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "indexCode",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "code": [
+        "max:500"
+      ],
+      "order_by": [
+        "in:id"
+      ],
+      "order_by_dir": [
+        "required_with:order_by",
+        "in:asc,desc"
+      ],
+      "per_page": [
+        "min:1",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "code": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "order_by": {
+            "required": false,
+            "rules": [
+              "in:id"
+            ],
+            "children": {}
+          },
+          "order_by_dir": {
+            "required": true,
+            "rules": [
+              "required_with:order_by",
+              "in:asc,desc"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/{discount}@PUT": {
+    "uri": "api/admin/discount/{discount}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "discount": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "update",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "name": [
+        "max:500",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "percent": [
+        "min:0",
+        "max:100"
+      ],
+      "starts_at": [
+        "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+      ],
+      "ends_at": [
+        "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+      ],
+      "activate": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "percent": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": {}
+          },
+          "starts_at": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+            ],
+            "children": {}
+          },
+          "ends_at": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "regex:/(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})/"
+            ],
+            "children": {}
+          },
+          "activate": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/{discount}@DELETE": {
+    "uri": "api/admin/discount/{discount}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "discount": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "destroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount/{discount}@GET": {
+    "uri": "api/admin/discount/{discount}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "discount": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "show",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount@POST": {
+    "uri": "api/admin/discount",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "store",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "name": [
+        "max:500",
+        "unique:discounts,name"
+      ],
+      "percent": [
+        "min:0",
+        "max:100"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:500",
+              "unique:discounts,name"
+            ],
+            "children": {}
+          },
+          "percent": {
+            "type": "integer",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/discount@GET": {
+    "uri": "api/admin/discount",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminDiscount",
+    "controllerMethod": "index",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view discount"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "name": [
+        "max:500"
+      ],
+      "order_by": [
+        "in:id"
+      ],
+      "order_by_dir": [
+        "required_with:order_by",
+        "in:asc,desc"
+      ],
+      "per_page": [
+        "min:1",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:500"
+            ],
+            "children": {}
+          },
+          "order_by": {
+            "required": false,
+            "rules": [
+              "in:id"
+            ],
+            "children": {}
+          },
+          "order_by_dir": {
+            "required": true,
+            "rules": [
+              "required_with:order_by",
+              "in:asc,desc"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/landing@GET": {
+    "uri": "api/admin/meta-page/landing",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "landing",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view meta landing"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/landing@POST": {
+    "uri": "api/admin/meta-page/landing",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "setLanding",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:set meta landing"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "title": [
+        "max:1000"
+      ],
+      "description": [
+        "max:1000"
+      ],
+      "twitter:card": [
+        "max:1000"
+      ],
+      "twitter:site": [
+        "max:1000"
+      ],
+      "twitter:app:id:googleplay": [
+        "max:1000"
+      ],
+      "twitter:creator": [
+        "max:1000"
+      ],
+      "twitter:title": [
+        "max:1000"
+      ],
+      "twitter:description": [
+        "max:1000"
+      ],
+      "twitter:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:type": [
+        "max:1000"
+      ],
+      "og:description": [
+        "max:1000"
+      ],
+      "og:site_name": [
+        "max:1000"
+      ],
+      "og:url": [
+        "max:1000"
+      ],
+      "og:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:locale": [
+        "max:1000"
+      ],
+      "og:availability": [
+        "max:1000"
+      ],
+      "google-site-verification": [
+        "max:1000"
+      ],
+      "keywords": [
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:card": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:site": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:app:id:googleplay": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:creator": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:type": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:site_name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:url": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:locale": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:availability": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "google-site-verification": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "keywords": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/faq@GET": {
+    "uri": "api/admin/meta-page/faq",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "faq",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view meta terms"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/faq@POST": {
+    "uri": "api/admin/meta-page/faq",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "setFaq",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:set meta terms"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "title": [
+        "max:1000"
+      ],
+      "description": [
+        "max:1000"
+      ],
+      "twitter:card": [
+        "max:1000"
+      ],
+      "twitter:site": [
+        "max:1000"
+      ],
+      "twitter:app:id:googleplay": [
+        "max:1000"
+      ],
+      "twitter:creator": [
+        "max:1000"
+      ],
+      "twitter:title": [
+        "max:1000"
+      ],
+      "twitter:description": [
+        "max:1000"
+      ],
+      "twitter:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:type": [
+        "max:1000"
+      ],
+      "og:description": [
+        "max:1000"
+      ],
+      "og:site_name": [
+        "max:1000"
+      ],
+      "og:url": [
+        "max:1000"
+      ],
+      "og:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:locale": [
+        "max:1000"
+      ],
+      "og:availability": [
+        "max:1000"
+      ],
+      "google-site-verification": [
+        "max:1000"
+      ],
+      "keywords": [
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:card": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:site": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:app:id:googleplay": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:creator": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:type": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:site_name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:url": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:locale": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:availability": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "google-site-verification": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "keywords": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/about-us@GET": {
+    "uri": "api/admin/meta-page/about-us",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "aboutUs",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view meta about us"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/about-us@POST": {
+    "uri": "api/admin/meta-page/about-us",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "setAboutUs",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:set meta about us"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "title": [
+        "max:1000"
+      ],
+      "description": [
+        "max:1000"
+      ],
+      "twitter:card": [
+        "max:1000"
+      ],
+      "twitter:site": [
+        "max:1000"
+      ],
+      "twitter:app:id:googleplay": [
+        "max:1000"
+      ],
+      "twitter:creator": [
+        "max:1000"
+      ],
+      "twitter:title": [
+        "max:1000"
+      ],
+      "twitter:description": [
+        "max:1000"
+      ],
+      "twitter:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:type": [
+        "max:1000"
+      ],
+      "og:description": [
+        "max:1000"
+      ],
+      "og:site_name": [
+        "max:1000"
+      ],
+      "og:url": [
+        "max:1000"
+      ],
+      "og:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:locale": [
+        "max:1000"
+      ],
+      "og:availability": [
+        "max:1000"
+      ],
+      "google-site-verification": [
+        "max:1000"
+      ],
+      "keywords": [
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:card": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:site": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:app:id:googleplay": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:creator": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:type": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:site_name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:url": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:locale": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:availability": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "google-site-verification": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "keywords": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/contact-us@GET": {
+    "uri": "api/admin/meta-page/contact-us",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "contactUs",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view meta contact us"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/meta-page/contact-us@POST": {
+    "uri": "api/admin/meta-page/contact-us",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminMetaPage",
+    "controllerMethod": "setContactUs",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:set meta contact us"
+    ],
+    "hasFileInBody": true,
+    "rules": {
+      "title": [
+        "max:1000"
+      ],
+      "description": [
+        "max:1000"
+      ],
+      "twitter:card": [
+        "max:1000"
+      ],
+      "twitter:site": [
+        "max:1000"
+      ],
+      "twitter:app:id:googleplay": [
+        "max:1000"
+      ],
+      "twitter:creator": [
+        "max:1000"
+      ],
+      "twitter:title": [
+        "max:1000"
+      ],
+      "twitter:description": [
+        "max:1000"
+      ],
+      "twitter:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:type": [
+        "max:1000"
+      ],
+      "og:description": [
+        "max:1000"
+      ],
+      "og:site_name": [
+        "max:1000"
+      ],
+      "og:url": [
+        "max:1000"
+      ],
+      "og:image": [
+        "sometimes",
+        "image",
+        "max:2000"
+      ],
+      "og:locale": [
+        "max:1000"
+      ],
+      "og:availability": [
+        "max:1000"
+      ],
+      "google-site-verification": [
+        "max:1000"
+      ],
+      "keywords": [
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:card": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:site": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:app:id:googleplay": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:creator": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:title": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "twitter:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:type": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:description": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:site_name": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:url": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:image": {
+            "type": "file",
+            "required": false,
+            "rules": [
+              "sometimes",
+              "image",
+              "max:2000"
+            ],
+            "children": {}
+          },
+          "og:locale": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "og:availability": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "google-site-verification": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          },
+          "keywords": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/properties/user-maintenance@POST": {
+    "uri": "api/admin/properties/user-maintenance",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminProperty",
+    "controllerMethod": "setUserMaintenance",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:set user maintenance property"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "status": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "status": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/properties/user-maintenance@GET": {
+    "uri": "api/admin/properties/user-maintenance",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminProperty",
+    "controllerMethod": "userMaintenance",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view user maintenance property"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/properties/admin-maintenance@POST": {
+    "uri": "api/admin/properties/admin-maintenance",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminProperty",
+    "controllerMethod": "setAdminMaintenance",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:set admin maintenance property"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "status": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "status": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/properties/admin-maintenance@GET": {
+    "uri": "api/admin/properties/admin-maintenance",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminProperty",
+    "controllerMethod": "adminMaintenance",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view admin maintenance property"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/notifications/see@PUT": {
+    "uri": "api/admin/notifications/see",
+    "httpMethod": "PUT",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "seeNotifications",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "notifications": [
+        "min:1",
+        "max:99999"
+      ],
+      "notifications.*": [
+        "min:1"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "notifications": {
+            "type": "array",
+            "required": true,
+            "rules": [
+              "min:1",
+              "max:99999"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "min:1"
+                ],
+                "children": {}
+              }
+            ]
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/notifications@GET": {
+    "uri": "api/admin/notifications",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "notifications",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "read": [
+        "in:true,false"
+      ],
+      "per_page": [
+        "min:1",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "read": {
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/logout@GET": {
+    "uri": "api/admin/logout",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "logout",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/self@GET": {
+    "uri": "api/admin/self",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "self",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/suspend/some@PUT": {
+    "uri": "api/admin/suspend/some",
+    "httpMethod": "PUT",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "suspendSome",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:suspend admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "admins": [
+        "min:0",
+        "max:100"
+      ],
+      "admins.*": [
+        "min:1",
+        "exists:admins,id"
+      ],
+      "suspend": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "admins": {
+            "type": "array",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "min:1",
+                  "exists:admins,id"
+                ],
+                "children": {}
+              }
+            ]
+          },
+          "suspend": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/suspend/{admin}@PUT": {
+    "uri": "api/admin/suspend/{admin}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "suspend",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:suspend admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "suspend": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "suspend": {
+            "type": "boolean",
+            "required": true,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/restore/{admin}@PUT": {
+    "uri": "api/admin/restore/{admin}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "restore",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/soft/{admin}@DELETE": {
+    "uri": "api/admin/soft/{admin}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "softDestroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/privileges/{admin}@GET": {
+    "uri": "api/admin/privileges/{admin}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "privileges",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/privileges/{admin}@PUT": {
+    "uri": "api/admin/privileges/{admin}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "setPrivileges",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:grant admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "privileges": [
+        "min:0",
+        "max:1000"
+      ],
+      "privileges.*": [
+        "min:1"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "privileges": {
+            "type": "array",
+            "required": false,
+            "rules": [
+              "min:0",
+              "max:1000"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "min:1"
+                ],
+                "children": {}
+              }
+            ]
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/some@DELETE": {
+    "uri": "api/admin/some",
+    "httpMethod": "DELETE",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "deleteSome",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "admins": [
+        "min:0",
+        "max:100"
+      ],
+      "admins.*": [
+        "min:1",
+        "exists:admins,id"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "admins": {
+            "type": "array",
+            "required": true,
+            "rules": [
+              "min:0",
+              "max:100"
+            ],
+            "children": [
+              {
+                "type": "integer",
+                "required": true,
+                "rules": [
+                  "min:1",
+                  "exists:admins,id"
+                ],
+                "children": {}
+              }
+            ]
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/{admin}@PUT": {
+    "uri": "api/admin/{admin}",
+    "httpMethod": "PUT",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "update",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:update admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "firstname": [
+        "max:255"
+      ],
+      "lastname": [
+        "max:255"
+      ],
+      "email": [
+        "email",
+        "max:400",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "phone_number": [
+        "max:255",
+        "Illuminate\\Validation\\Rules\\Unique"
+      ],
+      "password": [
+        "max:65"
+      ],
+      "confirm_password": [
+        "required_with:password",
+        "same:password"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "firstname": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "lastname": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "email": {
+            "required": true,
+            "rules": [
+              "email",
+              "max:400",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "phone_number": {
+            "required": true,
+            "rules": [
+              "max:255",
+              "Illuminate\\Validation\\Rules\\Unique"
+            ],
+            "children": {}
+          },
+          "password": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:65"
+            ],
+            "children": {}
+          },
+          "confirm_password": {
+            "required": true,
+            "rules": [
+              "required_with:password",
+              "same:password"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/{admin}@GET": {
+    "uri": "api/admin/{admin}",
+    "httpMethod": "GET",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "show",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin/{admin}@DELETE": {
+    "uri": "api/admin/{admin}",
+    "httpMethod": "DELETE",
+    "uriParameters": {
+      "admin": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "destroy",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:delete admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/admin@GET": {
+    "uri": "api/admin",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "index",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:view admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "firstname": [
+        "max:255"
+      ],
+      "lastname": [
+        "max:255"
+      ],
+      "email": [
+        "email",
+        "max:400"
+      ],
+      "phone_number": [
+        "max:255"
+      ],
+      "suspended": [
+        "in:true,false"
+      ],
+      "order_by": [
+        "in:firstname,lastname,email,phone_number,id"
+      ],
+      "order_by_dir": [
+        "required_with:order_by",
+        "in:asc,desc"
+      ],
+      "per_page": [
+        "min:1",
+        "max:1000"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "firstname": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "lastname": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "email": {
+            "required": false,
+            "rules": [
+              "email",
+              "max:400"
+            ],
+            "children": {}
+          },
+          "phone_number": {
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "suspended": {
+            "required": false,
+            "rules": [
+              "in:true,false"
+            ],
+            "children": {}
+          },
+          "order_by": {
+            "required": false,
+            "rules": [
+              "in:firstname,lastname,email,phone_number,id"
+            ],
+            "children": {}
+          },
+          "order_by_dir": {
+            "required": true,
+            "rules": [
+              "required_with:order_by",
+              "in:asc,desc"
+            ],
+            "children": {}
+          },
+          "per_page": {
+            "type": "integer",
+            "required": false,
+            "rules": [
+              "min:1",
+              "max:1000"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin@POST": {
+    "uri": "api/admin",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "store",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin",
+      "maintenanceAdmin",
+      "adminGranted:store admin"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "firstname": [
+        "max:255"
+      ],
+      "lastname": [
+        "max:255"
+      ],
+      "email": [
+        "email",
+        "max:400",
+        "unique:admins,email"
+      ],
+      "phone_number": [
+        "max:255",
+        "unique:admins,phone_number"
+      ],
+      "password": [
+        "max:65"
+      ],
+      "confirm_password": [
+        "same:password"
+      ]
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "firstname": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "lastname": {
+            "type": "string",
+            "required": false,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "email": {
+            "required": true,
+            "rules": [
+              "email",
+              "max:400",
+              "unique:admins,email"
+            ],
+            "children": {}
+          },
+          "phone_number": {
+            "required": true,
+            "rules": [
+              "max:255",
+              "unique:admins,phone_number"
+            ],
+            "children": {}
+          },
+          "password": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:65"
+            ],
+            "children": {}
+          },
+          "confirm_password": {
+            "required": true,
+            "rules": [
+              "same:password"
+            ],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/admin/login@POST": {
+    "uri": "api/admin/login",
+    "httpMethod": "POST",
+    "uriParameters": {},
+    "controllerName": "AdminAdmin",
+    "controllerMethod": "login",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "logUserActivity",
+      "authAdmin:false"
+    ],
+    "hasFileInBody": false,
+    "rules": {
+      "email": [
+        "required_without:phone_number",
+        "email"
+      ],
+      "phone_number": [
+        "required_without:email",
+        "max:255"
+      ],
+      "password": [
+        "max:255"
+      ],
+      "remember": []
+    },
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {
+          "email": {
+            "required": true,
+            "rules": [
+              "required_without:phone_number",
+              "email"
+            ],
+            "children": {}
+          },
+          "phone_number": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "required_without:email",
+              "max:255"
+            ],
+            "children": {}
+          },
+          "password": {
+            "type": "string",
+            "required": true,
+            "rules": [
+              "max:255"
+            ],
+            "children": {}
+          },
+          "remember": {
+            "type": "boolean",
+            "required": false,
+            "rules": [],
+            "children": {}
+          }
+        },
+        "rules": []
+      }
+    }
+  },
+  "api/tools/dev/get-relations@GET": {
+    "uri": "api/tools/dev/get-relations",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "DevTableSchema",
+    "controllerMethod": "getRelations",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "maintenanceUser"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/tools/dev/get-tables-schema@GET": {
+    "uri": "api/tools/dev/get-tables-schema",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "DevTableSchema",
+    "controllerMethod": "getTablesSchema",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "maintenanceUser"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/tools/dev/get-table-schema@GET": {
+    "uri": "api/tools/dev/get-table-schema",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "DevTableSchema",
+    "controllerMethod": "getTableSchema",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "maintenanceUser"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  },
+  "api/tools/csrf@GET": {
+    "uri": "api/tools/csrf",
+    "httpMethod": "GET",
+    "uriParameters": {},
+    "controllerName": "ToolsCsrf",
+    "controllerMethod": "getCsrf",
+    "okResponse": {
+      "type": "string"
+    },
+    "middlewares": [
+      "web",
+      "maintenanceUser"
+    ],
+    "hasFileInBody": false,
+    "rules": {},
+    "rulesObject": {
+      "object": {
+        "required": true,
+        "type": "object",
+        "children": {},
+        "rules": []
+      }
+    }
+  }
+}

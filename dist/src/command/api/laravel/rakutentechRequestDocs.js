@@ -16,9 +16,13 @@ const Command_1 = require("../../../class/Command");
 const terminal_1 = __importDefault(require("../../../decorator/terminal"));
 const validateProps_1 = __importDefault(require("../../../decorator/validateProps"));
 const Object_1 = require("../../../lib/Object");
-class rakutentechLaravelRequestDocs extends Command_1.Command {
+const File_1 = require("../../../lib/File");
+const path_1 = require("../../../helper/path");
+const laravelAdaptor_1 = __importDefault(require("../../zod/laravelAdaptor"));
+class rakutentechRequestDocs extends Command_1.Command {
     async index(args) {
         var _a;
+        console.log('args', args);
         const filters = [];
         if (!!args.withPrefix)
             filters.push((req) => { var _a; return req.uri.startsWith((_a = args.withPrefix) !== null && _a !== void 0 ? _a : ''); });
@@ -28,7 +32,23 @@ class rakutentechLaravelRequestDocs extends Command_1.Command {
             filters.push((req) => !!req.controller);
         if (!!args.filter)
             filters.push((req) => { var _a; return eval(`(${(_a = args.filter) !== null && _a !== void 0 ? _a : ''})(req)`); });
-        const requests = this.filterEndPoint(await this.fetchData((_a = args.uri) !== null && _a !== void 0 ? _a : ''));
+        const requests = this.filterEndPoint(await this.fetchData((_a = args.uri) !== null && _a !== void 0 ? _a : ''), filters);
+        const keyValue = await this.toKeyValue(requests);
+        if (!!args.out) {
+            File_1.Directory.create({
+                path: args.out,
+                check: false,
+                recursive: true
+            });
+            File_1.File.writeJson({
+                data: requests,
+                path: (0, path_1.joinPaths)(args.out, 'requests.json')
+            });
+            File_1.File.writeJson({
+                data: keyValue,
+                path: (0, path_1.joinPaths)(args.out, 'keyValue.json')
+            });
+        }
     }
     async fetchData(uri) {
         const response = await fetch(uri);
@@ -36,15 +56,17 @@ class rakutentechLaravelRequestDocs extends Command_1.Command {
     }
     filterEndPoint(requests, filters = []) {
         return requests.filter(r => {
-            for (const f of filters)
+            for (const f of filters) {
                 if (!f(r))
                     return false;
+            }
             return true;
         });
     }
-    toKeyValue(requests, injections) {
+    async toKeyValue(requests, injections = {}) {
         var _a;
         const newRequests = {};
+        const adaptor = new laravelAdaptor_1.default;
         for (const r of requests) {
             const uri = r.uri;
             const httpMethod = r.http_method.toUpperCase();
@@ -81,6 +103,7 @@ class rakutentechLaravelRequestDocs extends Command_1.Command {
                 middlewares: r.middlewares,
                 hasFileInBody,
                 rules,
+                rulesObject: await adaptor.index({ rules }),
             };
             if (key in injections) { // @ts-ignore
                 newRequests[key] = (0, Object_1.mergeDeep)(newRequests[key], injections[key]);
@@ -89,7 +112,7 @@ class rakutentechLaravelRequestDocs extends Command_1.Command {
         return newRequests;
     }
 }
-exports.default = rakutentechLaravelRequestDocs;
+exports.default = rakutentechRequestDocs;
 __decorate([
     (0, terminal_1.default)({
         description: 'sample description',
@@ -142,6 +165,11 @@ __decorate([
                 format: 'uri',
                 default: 'http://127.0.0.1:8000/request-docs/api?json=true&showGet=true&showPost=true&showDelete=true&showPut=true&showPatch=true&showHead=false&sort=default&groupby=default'
             },
+            out: {
+                type: "string",
+                nullable: true,
+                default: undefined,
+            },
         },
         required: [],
         additionalProperties: false,
@@ -149,4 +177,4 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], rakutentechLaravelRequestDocs.prototype, "index", null);
+], rakutentechRequestDocs.prototype, "index", null);

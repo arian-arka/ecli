@@ -2,14 +2,16 @@ import {Command} from "../../class/Command";
 import {basePath} from "../../helper/path";
 import terminal from "../../decorator/terminal";
 import validateProps from "../../decorator/validateProps";
+import {objectConvertors, rulesConvertors} from "./laravelAdaptorRules";
 
 type IObject = {
     [key: string]: {
         required: boolean,
-        type?: 'numeric' | 'integer' | 'string' | 'decimal' | 'file' | 'boolean' | 'object' | 'array'
-        children: IObject,
+        type?: 'numeric' | 'integer' | 'string' | 'decimal' | 'file' | 'boolean' | 'object' | 'array' | 'array-item'
+        children: IObject|[(IObject[keyof IObject])],
         rules: string[],
     },
+
 }
 
 export default class laravelAdaptor extends Command {
@@ -52,12 +54,21 @@ export default class laravelAdaptor extends Command {
         defaults?: {
             required?: boolean
         }
-    }) {
-
+    }) : Promise<any> {
+        return this.toObject(args.rules,args.defaults);
     }
 
+    private checkHasRule(rule: string, rules: string[], remove = true) {
+        const index = rules.indexOf(rule);
+        if (index === -1)
+            return false;
+        remove && rules.splice(index, 1);
+        return true;
+    }
 
-    private toObject(rules: { [key: string]: string[] },defaults : Parameters<InstanceType<typeof laravelAdaptor>['index']>[0]['defaults']): IObject {
+    private toObject(rules: {
+        [key: string]: string[]
+    }, defaults: Parameters<InstanceType<typeof laravelAdaptor>['index']>[0]['defaults']): IObject {
         const obj: IObject = {
             'object': {
                 required: true,
@@ -75,8 +86,16 @@ export default class laravelAdaptor extends Command {
                 if (currentKey === '*') {
                     if (tmpObj['type'] !== 'array')
                         tmpObj['type'] = 'array';
+                    tmpObj['children'] = [{
+                        type:'array-item',
+                        required: defaults?.required ?? true,
+                        rules: [],
+                        children: {}
+                    }];
+                    tmpObj = tmpObj['children'][0];
                 } else {
                     if (!(currentKey in tmpObj['children'])) {
+                        // @ts-ignore
                         tmpObj['children'][currentKey] = {
                             type: undefined,
                             required: defaults?.required ?? true,
@@ -84,6 +103,7 @@ export default class laravelAdaptor extends Command {
                             children: {}
                         }
                     }
+                    // @ts-ignore
                     tmpObj = tmpObj['children'][currentKey];
                 }
             }
@@ -109,8 +129,27 @@ export default class laravelAdaptor extends Command {
                 tmpObj['type'] = 'file';
             else if (this.checkHasRule('image', values, false))
                 tmpObj['type'] = 'file';
-            else if (this.checkHasDecimal(values))
-                tmpObj['type'] = 'numeric';
+            else {
+                for (let i = 0; i < values.length; i++) {
+                    const v = values[i];
+                    if (v.startsWith('decimal:')) {
+                        tmpObj['type'] = 'numeric';
+                        values.splice(i, 1);
+                        break;
+                    }
+                    if (v.startsWith('array:')) {
+                        tmpObj['type'] = 'object';
+                        // @ts-ignore
+                        v.substring(6).split(',').forEach(e => tmpObj['children'][e] = {
+                            type: undefined,
+                            required: defaults?.required ?? true,
+                            rules: [],
+                            children: {}
+                        })
+                        break;
+                    }
+                }
+            }
 
             tmpObj['rules'] = values;
 
@@ -119,21 +158,71 @@ export default class laravelAdaptor extends Command {
         return obj;
     }
 
-    private toZodObject(obj: IObject) : string{
-        let text = '';
+    private toZodObject(name: string, obj: IObject): string {
 
-        return text;
+        const runThroughArray = (obj ?: IObject[keyof IObject]) => {
+            if(!obj)
+                return '';
+
+        }
+        const runThroughObject = (obj?: IObject): string => {
+            if(!obj)
+                return '';
+
+            let text = '';
+
+            for (const [key, value] of Object.entries(obj)) {
+                text += `${key} : \n`;
+
+                if (!value.type) {
+                    if (Object.keys(value.children).length) {
+                        value.type = 'object';
+                        text += rulesConvertors.object(key, [runThroughObject(value.children ?? {})], !value.required);
+                    } else {
+                        value.type = 'string';
+                        text += rulesConvertors.string(key);
+                    }
+                } else if (value.type === 'numeric')
+                    text += rulesConvertors.number(key);
+                else if (value.type === 'integer')
+                    text += rulesConvertors.integer(key);
+                else if (value.type === 'string')
+                    text += rulesConvertors.string(key);
+                else if (value.type === 'file')
+                    text += rulesConvertors.file(key, !value.required);
+                else if (value.type === 'boolean')
+                    text += rulesConvertors.boolean(key);
+                else if (value.type === 'object')
+                    text += rulesConvertors.object(key, [runThroughObject((value.children as IObject)  ?? undefined)], !value.required);
+                else if (value.type === 'array'){
+                    // @ts-ignore
+                    text += rulesConvertors.array(key, [runThroughArray(value.children)], !value.required);
+                }
+
+                if (value.rules.length) {
+                    value.rules.forEach(wholeRule => {
+                        const indexOfQuote = wholeRule.indexOf(':');
+                        let values: string[] = [];
+                        if (indexOfQuote > -1)
+                            values = wholeRule.substring(indexOfQuote + 1).split(',');
+                        const rule = indexOfQuote > -1 ? wholeRule.substring(0, indexOfQuote) : wholeRule;
+                        if (rule in rulesConvertors) { // @ts-ignore
+                            text += '.' + rulesConvertors[rule](key, values, value.type) + '\n';
+                        } else if (rule in objectConvertors) { // @ts-ignore
+                            text += '.' + objectConvertors[rule](key, values, value.type) + '\n';
+                        } else text += `/* @unknown-rule -> [ ${rule} ] */`
+
+                    });
+                }
+                text += ',\n';
+
+            }
+
+            return text;
+        }
+
+        return rulesConvertors.object('', [runThroughObject(obj['object'].children)], true);
     }
 
-    private checkHasRule(rule: string, rules: string[], remove = true) {
-        const index = rules.indexOf(rule);
-        if (index === -1)
-            return false;
-        remove && rules.splice(index, 1);
-        return true;
-    }
 
-    private checkHasDecimal(rules: string[]) {
-        return rules.findIndex(e => e.startsWith('decimal:')) > -1;
-    }
 }
