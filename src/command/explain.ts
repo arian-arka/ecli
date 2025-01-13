@@ -1,9 +1,7 @@
-import {Command} from "../class/Command";
-import {basePath} from "../helper/path";
-import {File} from "../lib/File";
+import terminal from "ecli-base/dist/src/decorator/terminal";
+import {Command} from "ecli-base/dist/src/lib/command/Command";
+import {commandToClsAndMethod} from "../../ecli";
 import assert from "node:assert";
-import {commandToClsAndMethod} from "../helper/runCommand";
-import terminal from "../decorator/terminal";
 
 export default class explain extends Command {
     index(args: {
@@ -13,10 +11,8 @@ export default class explain extends Command {
             return '"Explain" command explains other commands';
 
         const [method, cls, obj] = commandToClsAndMethod(args.command);
-        if(!(method in obj.__terminal__)){
-            console.log(args.command,'is not explainable');
-            return;
-        }
+        assert(method in (obj?.__terminal__ ?? {}),  `${args.command},is not explainable`);
+
         const {description, paras} = obj.__terminal__[method] as Parameters<typeof terminal>[0];
         console.log('class:', obj.constructor.name);
         console.log('method:', method);

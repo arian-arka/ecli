@@ -2,8 +2,8 @@
   "name": "ecli",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/ecli.js",
+  "types": "dist/ecli.d.ts",
   "scripts": {
     "buildAndRun": "rm -r dist & tsc & node dist/index.js",
     "run": "node dist/index.js",
@@ -17,8 +17,7 @@
     "/dist"
   ],
   "bin": {
-    "ecli": "bin.js",
-    "custom-ecli": "bin-custom.js"
+    "ecli": "bin.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +36,8 @@
   "dependencies": {
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
+    "ecli-base": "github:arian-arka/ecli-base",
+    "json-schema-to-zod": "^2.6.0",
     "node-fetch": "^2.7.0",
     "reflect-metadata": "^0.2.2"
   }
