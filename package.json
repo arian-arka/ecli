@@ -13,10 +13,6 @@
     "just-push": "git add -A && git commit -m \"msg\" && git push",
     "deploy-local": "rm -r dist & tsc &  bash ignore/dl.sh"
   },
-  "files": [
-    "/dist",
-    "bin.js"
-  ],
   "bin": {
     "ecli": "bin.js"
   },
