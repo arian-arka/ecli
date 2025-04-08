@@ -11,3 +11,4 @@ ignore/dl.sh
 /ignore/dl.sh
 /ignore
 /ignore/*
+package-lock.json
