@@ -99,7 +99,10 @@ async function runCli(stdout = true) {
     if (stdout) {
         console.log('Status: ', output.ok ? 'OK' : 'ERROR');
         console.log('Result:');
-        console.log(JSON.stringify(output.result, null, 2));
+        // if (output.result instanceof Error)
+        //     console.log(JSON.stringify(output.result, null, 2));
+        // else
+        console.log(output.result, null, 2);
     }
     return output;
 }

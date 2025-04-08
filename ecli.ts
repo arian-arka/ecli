@@ -15,12 +15,12 @@ export function lookInDirective(splitted: string[], def = 'default'): [string, s
     const directivePath = basePath('custom-directive', name);
     assert(Directory.exists({path: directivePath}), `Directive - Invalid Command ${splitted.join('.')} `);
 
-    const obj: any = File.readJson({path: joinPaths(directivePath,'directive.json')});
+    const obj: any = File.readJson({path: joinPaths(directivePath, 'directive.json')});
 
-    if(!!obj['build'])
+    if (!!obj['build'])
         Terminal(`cd "${obj['base']}" && ${obj['build']}`);
 
-    const actualPath = joinPaths(obj['base'],obj['commands']);
+    const actualPath = joinPaths(obj['base'], obj['commands']);
     assert(Directory.exists({path: actualPath}), `Directive Path - Invalid Command ${splitted.join('.')} `);
 
     try {
@@ -33,15 +33,15 @@ export function lookInDirective(splitted: string[], def = 'default'): [string, s
                 return [others[others.length - 1], cls, new cls];
             } catch (_e) {
                 console.log(_e);
-                assert(false,`Directive Module - Invalid Command ${splitted.join('.')}`);
+                assert(false, `Directive Module - Invalid Command ${splitted.join('.')}`);
             }
 
         } else {
             console.log(e);
-            assert(false,`Directive Module - Invalid Command ${splitted.join('.')}`);
+            assert(false, `Directive Module - Invalid Command ${splitted.join('.')}`);
         }
     }
-    return ['','',''];
+    return ['', '', ''];
 }
 
 export function commandToClsAndMethod(command: string, def = 'default'): [string, string, any] {
@@ -59,9 +59,9 @@ export function commandToClsAndMethod(command: string, def = 'default'): [string
                 const cls = require('src/command/' + splitted.slice(0, splitted.length - 1).join('/'))[def];
                 return [splitted.at(splitted.length - 1) ?? '', cls, new cls];
             } catch (e) {
-                return lookInDirective(splitted,def);
+                return lookInDirective(splitted, def);
             }
-        } else return lookInDirective(splitted,def);
+        } else return lookInDirective(splitted, def);
     }
     return ['', '', ''];
 }
@@ -93,7 +93,10 @@ export async function runCli(stdout = true) {
     if (stdout) {
         console.log('Status: ', output.ok ? 'OK' : 'ERROR');
         console.log('Result:');
-        console.log(JSON.stringify(output.result, null, 2));
+        // if (output.result instanceof Error)
+        //     console.log(JSON.stringify(output.result, null, 2));
+        // else
+             console.log(output.result, null, 2);
     }
 
     return output;
