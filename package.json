@@ -14,7 +14,8 @@
     "deploy-local": "rm -r dist & tsc &  bash ignore/dl.sh"
   },
   "files": [
-    "/dist"
+    "/dist",
+    "bin.js"
   ],
   "bin": {
     "ecli": "bin.js"
