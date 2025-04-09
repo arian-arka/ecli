@@ -98,6 +98,8 @@ export async function runCli(stdout = true) {
         // else
              console.log(output.result, null, 2);
     }
+    if(!output.ok)
+        throw output.result;
 
     return output;
 }
